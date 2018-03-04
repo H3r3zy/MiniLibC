@@ -1,6 +1,10 @@
 #!/bin/bash
 make re
-gcc main.c
+if [ ! -e .test.main.c ]
+   then 
+       curl https://raw.githubusercontent.com/H3r3zy/MiniLibC/master/main.c > .test.main.c
+fi
+gcc .test.main.c
 
 LD_PRELOAD=`pwd`/libasm.so ./a.out > .test.me
 ./a.out > .test.assert
@@ -16,5 +20,6 @@ fi
 
 rm ./.test.assert
 rm ./.test.me
+rm a.out
 
 exit $ret
