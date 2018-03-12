@@ -7,18 +7,18 @@
 
 NAME	=	libasm.so
 
-SRC	=	src/strlen.S	\
-		src/strchr.S	\
-		src/memset.S	\
-		src/memcpy.S	\
-		src/strcmp.S	\
-		src/memmove.S	\
-		src/strncmp.S	\
-		src/strcasecmp.S	\
-		src/rindex.S	\
-		src/strstr.S	\
-		src/strpbrk.S	\
-		src/strcspn.S
+SRC	=	src/base/strlen.S	\
+		src/search/strchr.S	\
+		src/base/memset.S	\
+		src/base/memcpy.S	\
+		src/cmp/strcmp.S	\
+		src/base/memmove.S	\
+		src/cmp/strncmp.S	\
+		src/cmp/strcasecmp.S	\
+		src/base/rindex.S	\
+		src/search/strstr.S	\
+		src/search/strpbrk.S	\
+		src/base/strcspn.S
 
 OBJ	=	$(SRC:.S=.o)
 
@@ -28,7 +28,7 @@ all:	$(NAME)
 	nasm -o $@ $< -f elf64
 
 $(NAME): $(OBJ)
-	gcc -shared -o $(NAME) $(OBJ)
+	gcc -shared -static-libgcc -nostdlib -fno-builtin -o $(NAME) $(OBJ)
 
 clean:
 	rm -f $(OBJ)

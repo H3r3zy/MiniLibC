@@ -7,14 +7,15 @@ loop:
         mov al, [rsi]
         mov r8b, [rdi]
 
-        cmp rcx, rdx
-        jz end
-        cmp r8b, al
-        jne end
         cmp r8b, 0
         je end
         cmp al, 0
         je end
+        cmp rcx, rdx
+        jz end
+        cmp r8b, al
+        jne end
+
 
         inc rdi
         inc rsi

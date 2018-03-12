@@ -8,6 +8,8 @@ loop1:
         mov r8b, [rdi]
         mov r9b, [rsi]
 
+        cmp r9b, 0
+        je found
 
         cmp r8b, r9b
         je start2
