@@ -18,7 +18,9 @@ SRC	=	src/base/strlen.S	\
 		src/base/rindex.S	\
 		src/search/strstr.S	\
 		src/search/strpbrk.S	\
-		src/base/strcspn.S
+		src/base/strcspn.S	\
+		src/bonus/read.S	\
+		src/bonus/write.S
 
 OBJ	=	$(SRC:.S=.o)
 

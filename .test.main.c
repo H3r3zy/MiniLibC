@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
 
 void test_strcmp(char *str, char *str2) {
 	printf("strcmp(%s, %s) = %i\n", str, str2, strcmp(str, str2));
@@ -30,19 +31,26 @@ int main(int ac, char **av) {
 	printf("\n");
 
 	str = memcpy(str, "Sahel est vraiment trop fort", 28);
-	printf("strcpy: %s\n", str);
+	printf("memcpy: %s\n", str);
 
 	test_strcmp("abcdef", "abcdef");
 	test_strcmp("abcdef", "000bcdef");
 	test_strcmp("abcdef", "");
 	test_strcmp("abcdef", "a");
 
-	str = memmove(str, "Vincent est le meilleur", 24);
-	printf("memmove: %s\n", str);
+	printf("memmove: %s\n", (char *) memmove(str, "Vincent est le meilleur", 24));
+	printf("%s\n", str);
+	printf("memmove: %s\n", (char *) memmove(str + 3, str, 10)); // VinVincent ese meilleur
+	printf("%s\n", str);
+	printf("memmove: %s\n", (char *) memmove(str, str + 3, 10)); // Vincent es ese meilleur
+	printf("%s\n", str);
+	printf("memmove: %s\n", (char *) memmove(str, "Vincent est le meilleur", 24));
+	printf("%s\n", str);
 
 	test_strncmp("abcdef", "abcdf", 4);
 	test_strncmp("abcdef", "abcdf", 5);
 	test_strncmp("", "", 4);
+	test_strncmp(NULL, NULL, 0);
 	test_strncmp("", "abcdef", 10);
 	test_strncmp("abcdef", "", 10);
 
@@ -85,4 +93,7 @@ int main(int ac, char **av) {
 	printf("strcspn %lu\n", strcspn(str, "abcdefghijklmnoqrstuvwxyz "));
 	printf("strcspn %lu\n", strcspn(str, "a"));
 	printf("strcspn %lu\n", strcspn(str, "lolqsd"));
+
+	read(0, str, 100);
+	write(1, str, strlen(str));
 }
