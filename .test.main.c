@@ -46,6 +46,7 @@ int main(int ac, char **av) {
 	printf("%s\n", str);
 	printf("memmove: %s\n", (char *) memmove(str, "Vincent est le meilleur", 24));
 	printf("%s\n", str);
+	printf("memmove: %s\n", (char *) memmove(str, NULL, 0));
 
 	test_strncmp("abcdef", "abcdf", 4);
 	test_strncmp("abcdef", "abcdf", 5);

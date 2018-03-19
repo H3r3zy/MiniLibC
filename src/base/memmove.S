@@ -13,6 +13,8 @@ while1:
 memmove:
         xor rcx, rcx
 
+        cmp rdx, 0
+        je end
         dec rdx
         cmp rsi, rdi
         jg while1
