@@ -2,7 +2,7 @@ global strncmp
 section .text
 
 strncmp:
-        mov rcx, 0
+        mov rcx, 1
 loop:
         cmp rdx, 0
         je endNull
